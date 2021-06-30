@@ -46,14 +46,6 @@ export default ({toggleTheme}) => {
     }
   }, [curNum, operator, prevNum]);
 
-  const clickButton = e => {
-    if (e === '+' || e === '-' || e === '/' || e === '*') {
-      operation_Func(e);
-    } else {
-      setInput(input + e);
-    }
-  };
-
   const addPercentage = () => {
     setInput(input / 100);
   };
@@ -94,6 +86,26 @@ export default ({toggleTheme}) => {
     setOperator(e);
   }
 
+  const clickButton = e => {
+    if (e === '+' || e === '-' || e === '/' || e === '*') {
+      operation_Func(e);
+    } else if (e === 'C') {
+      handleClear();
+    } else if (e === '+/-') {
+      addPlusMinus();
+    } else if (e === '%') {
+      addPercentage();
+    } else if (e === '.') {
+      addDecimalToInput(e);
+    } else if (e === 'backspace') {
+      handleBackspace();
+    } else if (e === '=') {
+      solve();
+    } else {
+      setInput(input + e);
+    }
+  };
+
   return (
     <Container colors={[colors.primary, colors.secondary]} locations={[0, 0.8]}>
       <SwitchArea>
@@ -114,75 +126,76 @@ export default ({toggleTheme}) => {
           solid
         />
       </SwitchArea>
+
       <CustomScreen inputValue={input} />
 
       <RowButtonArea>
         <CustomButtom
-          btn="C"
+          value="C"
           color={colors.colorFunctionSecondary}
-          onPress={handleClear}
+          onPress={() => clickButton('C')}
         />
         <CustomButtom
-          btn="+/-"
+          value="+/-"
           color={colors.colorFunctionSecondary}
-          onPress={() => addPlusMinus()}
+          onPress={() => clickButton('+/-')}
         />
         <CustomButtom
-          btn={<Icon name="percentage" size={25} />}
+          value={<Icon name="percentage" size={25} />}
           color={colors.colorFunctionSecondary}
-          onPress={() => addPercentage()}
+          onPress={() => clickButton('%')}
         />
         <CustomButtom
-          btn={<Icon name="divide" size={25} />}
+          value={<Icon name="divide" size={25} />}
           color={colors.colorFunctionPrimary}
           onPress={() => clickButton('/')}
         />
       </RowButtonArea>
 
       <RowButtonArea>
-        <CustomButtom btn="7" onPress={() => clickButton('7')} />
-        <CustomButtom btn="8" onPress={() => clickButton('8')} />
-        <CustomButtom btn="9" onPress={() => clickButton('9')} />
+        <CustomButtom value="7" onPress={() => clickButton('7')} />
+        <CustomButtom value="8" onPress={() => clickButton('8')} />
+        <CustomButtom value="9" onPress={() => clickButton('9')} />
         <CustomButtom
-          btn={<Icon name="times" size={25} />}
+          value={<Icon name="times" size={25} />}
           color={colors.colorFunctionPrimary}
           onPress={() => clickButton('*')}
         />
       </RowButtonArea>
 
       <RowButtonArea>
-        <CustomButtom btn="4" onPress={() => clickButton('4')} />
-        <CustomButtom btn="5" onPress={() => clickButton('5')} />
-        <CustomButtom btn="6" onPress={() => clickButton('6')} />
+        <CustomButtom value="4" onPress={() => clickButton('4')} />
+        <CustomButtom value="5" onPress={() => clickButton('5')} />
+        <CustomButtom value="6" onPress={() => clickButton('6')} />
         <CustomButtom
-          btn={<Icon name="minus" size={25} />}
+          value={<Icon name="minus" size={25} />}
           color={colors.colorFunctionPrimary}
           onPress={() => clickButton('-')}
         />
       </RowButtonArea>
 
       <RowButtonArea>
-        <CustomButtom btn="1" onPress={() => clickButton('1')} />
-        <CustomButtom btn="2" onPress={() => clickButton('2')} />
-        <CustomButtom btn="3" onPress={() => clickButton('3')} />
+        <CustomButtom value="1" onPress={() => clickButton('1')} />
+        <CustomButtom value="2" onPress={() => clickButton('2')} />
+        <CustomButtom value="3" onPress={() => clickButton('3')} />
         <CustomButtom
-          btn={<Icon name="plus" size={25} />}
+          value={<Icon name="plus" size={25} />}
           color={colors.colorFunctionPrimary}
           onPress={() => clickButton('+')}
         />
       </RowButtonArea>
 
       <RowButtonArea>
-        <CustomButtom btn="0" onPress={() => clickButton('0')} />
-        <CustomButtom btn="." onPress={() => addDecimalToInput('.')} />
+        <CustomButtom value="0" onPress={() => clickButton('0')} />
+        <CustomButtom value="." onPress={() => clickButton('.')} />
         <CustomButtom
-          btn={<Icon name="backspace" size={25} />}
-          onPress={handleBackspace}
+          value={<Icon name="backspace" size={25} />}
+          onPress={() => clickButton('backspace')}
         />
         <CustomButtom
-          btn={<Icon name="equals" size={25} />}
+          value={<Icon name="equals" size={25} />}
           background={colors.backgroundEquals}
-          onPress={() => solve()}
+          onPress={() => clickButton('=')}
         />
       </RowButtonArea>
     </Container>

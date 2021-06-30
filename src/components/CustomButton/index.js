@@ -22,11 +22,11 @@ const ButtonFunctionText = styled.Text`
   color: ${props => props.color || props.theme.colors.colorNumber};
 `;
 
-export default ({btn, color, background, onPress}) => {
+export default ({value, color, background, onPress}) => {
   return (
     <ButtonFunctionArea>
       <ButtonFunction background={background} onPress={onPress}>
-        <ButtonFunctionText color={color}>{btn}</ButtonFunctionText>
+        <ButtonFunctionText color={color}>{value}</ButtonFunctionText>
       </ButtonFunction>
     </ButtonFunctionArea>
   );

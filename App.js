@@ -3,8 +3,7 @@ import {ThemeProvider} from 'styled-components';
 
 import Home from './src/screens/Home';
 
-import light from './src/themes/light';
-import dark from './src/themes/dark';
+import {dark, light} from './src/themes';
 
 export default function App() {
   const [theme, setTheme] = useState(light);
