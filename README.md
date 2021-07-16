@@ -42,7 +42,7 @@ $ git clone https://github.com/pedrohribeiross/Minimalist-Calculator.git
 $ cd Minimalist-Calculator
 
 # Instalar as dependências.
-$ yarn install
+$ yarn
 
 ```
 
